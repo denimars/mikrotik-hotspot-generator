@@ -4,5 +4,8 @@ from app.session.user import UserSession
 
 db = DB(Base)
 db.generate_table()
-UserSession(db).create()
+user = UserSession(db)
+# user.read()
+user.update()
+user.create()
 

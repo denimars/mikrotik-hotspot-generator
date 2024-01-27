@@ -1,6 +1,5 @@
 import sqlalchemy as db
-from sqlalchemy.orm import declarative_base
-from app.model.user import User
+
 from dotenv import load_dotenv
 import os
 
@@ -13,10 +12,6 @@ class DB():
     
     def generate_table(self):
         self.declarative.metadata.create_all(self.engine)
-
-
-
-# if __name__=='__main__':
-#     # Base = declarative_base()
-#     db = DB(Base)
-#     db.generate_table()
+    
+    def connection_(self):
+        return self.connection

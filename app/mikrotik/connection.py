@@ -9,6 +9,6 @@ class MikrotikConnection():
         self.mikrotik_api = self.mikrotik_connection.get_api()
     
     def mikrotik_api(self):
-        return self.mikrotik_api
+        return self.mikrotik_connection, self.mikrotik_api
     
     

@@ -7,5 +7,7 @@ db.generate_table()
 user = UserSession(db)
 # user.read()
 user.update()
+
 user.create()
+user.get_data_from_server()
 

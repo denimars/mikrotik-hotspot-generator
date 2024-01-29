@@ -3,6 +3,8 @@ from app.model.user import User
 from uuid import uuid4
 from datetime import datetime
 from sqlalchemy import select, update, bindparam
+import requests
+import json
 
 class UserSession:
     def __init__(self, db):
@@ -24,11 +26,17 @@ class UserSession:
             data = session.execute(statement).all()
         session.close()
         return data
+    def get_data_from_server(self):
+        request = requests.get("https://jsonplaceholder.typicode.com/todos/1")
+        print(request.status_code)
+        data =  json.loads(request.content)
+        print(data["userId"])
+        print(data["id"])
     
     def update(self):
         getuser = self.read()
-        for user in getuser:
-            with Session(self.db.connection_()) as session:
+        with Session(self.db.connection_()) as session:
+          for user in getuser:
                 statement  = update(User).where(User.id==user[0].id).values(status=True)
                 session.execute(statement)
                 session.commit()
